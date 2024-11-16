@@ -4,18 +4,16 @@ class Solution {
         int[] result = new int[n - k + 1];
         
         for (int i = 0; i <= n - k; i++) {
-            int maxElement = Integer.MIN_VALUE;
             boolean isConsecutiveAndSorted = true;
             
-            for (int j = 0; j < k; j++) {
-                if (j > 0 && nums[i + j] != nums[i + j - 1] + 1) {
+            for (int j = 1; j < k; j++) {
+                if (nums[i + j] != nums[i + j - 1] + 1) {
                     isConsecutiveAndSorted = false;
                     break;
                 }
-                maxElement = Math.max(maxElement, nums[i + j]);
             }
             
-            result[i] = isConsecutiveAndSorted ? maxElement : -1;
+            result[i] = isConsecutiveAndSorted ? nums[i + k - 1] : -1;
         }
         
         return result;
